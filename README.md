@@ -4,7 +4,7 @@
 
 ### 가장 최근의 ID가져오기
 
-post: http://www.safekorea.go.kr/idsiSFK/bbs/user/selectBbsList.do
+post: http://www.safekorea.go.kr/idsiSFK/bbs/user/selectBbsList.do  
 request:
 
 ```json
