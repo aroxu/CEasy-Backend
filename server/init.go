@@ -10,11 +10,14 @@ import (
 	v0 "github.com/B1ackAnge1/CEasy-Backend/routes/v0"
 	"github.com/B1ackAnge1/CEasy-Backend/utils"
 	"github.com/gin-gonic/gin"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
 )
 
 func Init() {
 	etcInit()
 	applyConfig()
+	initDB()
 	startServer()
 }
 
@@ -49,4 +52,18 @@ func startServer() {
 
 	r.Run(":" + config.Port)
 
+}
+
+func initDB() {
+	db, err := gorm.Open(sqlite.Open("data.db"), &gorm.Config{})
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	utils.SetDB(db)
+	log.Print("Successed To Connect Database")
+
+	var models = []interface{}{&models.MsgData{}}
+	db.AutoMigrate(models...)
+	log.Print("Successfully performed AutoMigrate")
 }

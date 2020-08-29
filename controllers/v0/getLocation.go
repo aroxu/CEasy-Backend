@@ -12,6 +12,6 @@ import (
 //GetLocation return location based on CBS Data
 func GetLocation(c *gin.Context) {
 	query := c.MustGet("query").(*req.Location)
-	fmt.Println(query.Location)
+	fmt.Println(query.Value)
 	res.Response(c, resmodels.Empty{})
 }
