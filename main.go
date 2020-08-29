@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"github.com/B1ackAnge1/CEasy-Backend/server"
+)
 
 func main() {
-	fmt.Println("Hello World!")
+	server.Init()
 }
