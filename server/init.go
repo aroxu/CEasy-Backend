@@ -48,7 +48,7 @@ func startServer() {
 	r := gin.Default()
 	r.Use(middlewares.Cors())
 
-	version0 := r.Group("/v0")
+	version0 := r.Group("/api/cbs/v0")
 	v0.InitRoutes(version0)
 
 	r.Run(":" + config.Port)
