@@ -14,14 +14,15 @@ import (
 	"gorm.io/gorm"
 )
 
+//Init is actual entry point for this project.
 func Init() {
-	etcInit()
 	applyConfig()
 	initDB()
+	go testCode()
 	startServer()
 }
 
-func etcInit() {
+func testCode() {
 }
 
 func applyConfig() {
@@ -55,7 +56,7 @@ func startServer() {
 }
 
 func initDB() {
-	db, err := gorm.Open(sqlite.Open("data.db"), &gorm.Config{})
+	db, err := gorm.Open(sqlite.Open("database.db"), &gorm.Config{})
 	if err != nil {
 		log.Fatal(err)
 		return

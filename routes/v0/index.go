@@ -9,6 +9,6 @@ import (
 
 //InitRoutes initialize router for gin
 func InitRoutes(g *gin.RouterGroup) {
-	g.GET("/", c.GetAll)
+	g.GET("/", m.VerifyQuery(&req.Search{}), c.Get)
 	g.GET("/location", m.VerifyQuery(&req.Location{}), c.GetLocation)
 }

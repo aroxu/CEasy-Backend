@@ -6,22 +6,26 @@ import (
 )
 
 var (
-	g_config *models.Config
-	g_db     *gorm.DB
+	gConfig *models.Config
+	gDb     *gorm.DB
 )
 
+//SetConfig sets config from config.json
 func SetConfig(config *models.Config) {
-	g_config = config
+	gConfig = config
 }
 
+//GetConfig gets config from config.json
 func GetConfig() *models.Config {
-	return g_config
+	return gConfig
 }
 
+//SetDB sets database config from config.json
 func SetDB(db *gorm.DB) {
-	g_db = db
+	gDb = db
 }
 
+//GetDB gets database config from config.json
 func GetDB() *gorm.DB {
-	return g_db
+	return gDb
 }

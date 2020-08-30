@@ -7,9 +7,9 @@ import (
 type SelectBbsList struct {
 	Result RtnResult `json:"rtnResult"`
 	Data   []struct {
-		ID       int       `json:"BBS_ORDR"`
-		CreateAt time.Time `json:"FRST_REGIST_DT"`
-		Title    string    `json:"SJ"`
+		ID       int    `json:"BBS_ORDR"`
+		CreateAt string `json:"FRST_REGIST_DT"`
+		Title    string `json:"SJ"`
 	} `json:"bbsList"`
 }
 
@@ -24,8 +24,11 @@ type RtnResult struct {
 }
 
 type MsgData struct {
-	ID       int       `json:"bbs_ordr"`
-	Title    string    `json:"sj" gorm:"unique_index"`
-	Content  string    `json:"cn"`
-	CreateAt time.Time `json:"frst_regist_dt"`
+	ID          int    `gorm:"primary_key;unique_index"`
+	Title       string `json:"sj" gorm:"unique_index"`
+	Area        string `json:"-" gorm:""`
+	Content     string `json:"cn"`
+	CreateAt    time.Time
+	CreateAtStr string `gorm:"-" json:"frst_regist_dt"`
+	IDStr       string `json:"bbs_ordr"`
 }
