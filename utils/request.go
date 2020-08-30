@@ -5,7 +5,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strconv"
-	"time"
 
 	"github.com/B1ackAnge1/CEasy-Backend/models"
 	json "github.com/json-iterator/go"
@@ -41,11 +40,6 @@ func GetDetailMsg(id int) (*models.SelectBbsView, error) {
 	if err = json.Unmarshal(respBody, &data); err != nil {
 		return nil, err
 	}
-	time, err := time.Parse("2006-01-02 15:04:05", data.Data.CreateAtStr)
-	if err != nil {
-		return nil, err
-	}
-	data.Data.CreateAt = time
 	id, errStrconv := strconv.Atoi(data.Data.IDStr)
 	if errStrconv != nil {
 		return nil, errStrconv

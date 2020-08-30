@@ -24,11 +24,10 @@ type RtnResult struct {
 }
 
 type MsgData struct {
-	ID          int    `gorm:"primary_key;unique_index"`
-	Title       string `json:"sj" gorm:"unique_index"`
-	Area        string `json:"-" gorm:""`
-	Content     string `json:"cn"`
-	CreateAt    time.Time
-	CreateAtStr string `gorm:"-" json:"frst_regist_dt"`
-	IDStr       string `json:"bbs_ordr"`
+	ID       int    `gorm:"primary_key;unique_index"`
+	Title    string `json:"sj" gorm:"unique_index"`
+	Area     string `json:"area" gorm:""`
+	Content  string `json:"cn"`
+	CreateAt time.Time
+	IDStr    string `json:"bbs_ordr"`
 }
