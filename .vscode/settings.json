@@ -1,0 +1,11 @@
+{
+  "sqltools.connections": [
+    {
+      "database": "${workspaceFolder:CEasy-Backend}/database.db",
+      "driver": "SQLite",
+      "name": "CEasy-DB",
+      "previewLimit": 100000
+    }
+  ],
+  "sqltools.useNodeRuntime": true
+}
