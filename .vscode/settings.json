@@ -3,8 +3,21 @@
     {
       "database": "${workspaceFolder:CEasy-Backend}/database.db",
       "driver": "SQLite",
-      "name": "CEasy-DB",
+      "name": "CEasy-DB_OLD",
       "previewLimit": 100000
+    },
+    {
+      "database": "ceasy",
+      "driver": "MySQL",
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "name": "CEasy-DB",
+      "password": "DevEmployOnly13315@@$",
+      "port": 3306,
+      "previewLimit": 50,
+      "server": "192.168.0.7",
+      "username": "dev_employ"
     }
   ],
   "sqltools.useNodeRuntime": true

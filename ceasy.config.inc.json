@@ -1,0 +1,9 @@
+{
+  "PORT": "9096",
+  "DEBUG": true,
+  "DBHost": "127.0.0.1",
+  "DBPort": "3306",
+  "DBUser": "user",
+  "DBPass": "pass",
+  "DBDatabase": "database"
+}

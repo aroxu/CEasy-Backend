@@ -11,7 +11,7 @@ type SelectBbsList struct {
 
 type SelectBbsView struct {
 	Result RtnResult `json:"rtnResult"`
-	Data   MsgData   `json:"bbsMap"`
+	Data   CeasyData `json:"bbsMap"`
 }
 
 type RtnResult struct {
@@ -19,7 +19,7 @@ type RtnResult struct {
 	Msg  string `json:"resultMsg"`
 }
 
-type MsgData struct {
+type CeasyData struct {
 	ID      int    `gorm:"primary_key;unique_index"`
 	Title   string `json:"sj" gorm:"unique_index"`
 	Area    string `json:"area" gorm:""`

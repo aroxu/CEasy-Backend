@@ -7,8 +7,8 @@ import (
 type Empty struct{}
 
 type Search struct {
-	Count int64            `json:"count"`
-	Data  []models.MsgData `json:"data"`
+	Count int64              `json:"count"`
+	Data  []models.CeasyData `json:"data"`
 }
 
 type Location struct {

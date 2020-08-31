@@ -10,22 +10,22 @@ var (
 	gDb     *gorm.DB
 )
 
-//SetConfig sets config from config.json
+//SetConfig sets config from ceasy.config.json
 func SetConfig(config *models.Config) {
 	gConfig = config
 }
 
-//GetConfig gets config from config.json
+//GetConfig gets config from ceasy.config.json
 func GetConfig() *models.Config {
 	return gConfig
 }
 
-//SetDB sets database config from config.json
+//SetDB sets database config from ceasy.config.json
 func SetDB(db *gorm.DB) {
 	gDb = db
 }
 
-//GetDB gets database config from config.json
+//GetDB gets database config from ceasy.config.json
 func GetDB() *gorm.DB {
 	return gDb
 }

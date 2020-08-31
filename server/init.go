@@ -10,7 +10,7 @@ import (
 	v0 "github.com/B1ackAnge1/CEasy-Backend/routes/v0"
 	"github.com/B1ackAnge1/CEasy-Backend/utils"
 	"github.com/gin-gonic/gin"
-	"gorm.io/driver/sqlite"
+	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
@@ -26,7 +26,7 @@ func testCode() {
 }
 
 func applyConfig() {
-	jsonFile, err := ioutil.ReadFile("./config.json")
+	jsonFile, err := ioutil.ReadFile("./ceasy.config.json")
 	if err != nil {
 		log.Fatal(err.Error())
 	}
@@ -34,7 +34,7 @@ func applyConfig() {
 	if err := json.Unmarshal(jsonFile, &config); err != nil {
 		log.Fatal(err.Error())
 	}
-	log.Print("Successfully Opened config.json")
+	log.Print("Successfully Opened ceasy.config.json")
 	utils.SetConfig(&config)
 }
 
@@ -56,7 +56,9 @@ func startServer() {
 }
 
 func initDB() {
-	db, err := gorm.Open(sqlite.Open("database.db"), &gorm.Config{})
+	config := utils.GetConfig()
+	dsn := config.DBUser + ":" + config.DBPass + "@tcp(" + config.DBHost + ":" + config.DBPort + ")/" + config.DBDatabase + "?charset=utf8mb4&parseTime=True"
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal(err)
 		return
@@ -64,7 +66,7 @@ func initDB() {
 	utils.SetDB(db)
 	log.Print("Successed To Connect Database")
 
-	var models = []interface{}{&models.MsgData{}}
+	var models = []interface{}{&models.CeasyData{}}
 	db.AutoMigrate(models...)
 	log.Print("Successfully performed AutoMigrate")
 }

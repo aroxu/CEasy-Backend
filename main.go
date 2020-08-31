@@ -10,7 +10,7 @@ func main() {
 	go func() {
 		for {
 			server.StartCrawl()
-			time.Sleep(time.Minute * 3)
+			time.Sleep(time.Minute * 1)
 		}
 	}()
 	server.Init()

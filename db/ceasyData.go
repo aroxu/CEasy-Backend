@@ -9,23 +9,23 @@ import (
 )
 
 //InsertMsg inserts data to database
-func InsertMsg(data *models.MsgData) error {
+func InsertMsg(data *models.CeasyData) error {
 	result := utils.GetDB().Create(&data)
 	return result.Error
 }
 
 //GetLast returns latest data from database
 func GetLast() (int, error) {
-	data := &models.MsgData{}
+	data := &models.CeasyData{}
 	result := utils.GetDB().Order("id desc").Select("id").Find(&data)
 	return data.ID, result.Error
 }
 
 //GetMsg returns CBS message by area from database.
-func GetMsg(area string, limit, offset int) (*[]models.MsgData, error) {
+func GetMsg(area string, limit, offset int) (*[]models.CeasyData, error) {
 	log.Print(limit)
 	var result *gorm.DB
-	data := []models.MsgData{}
+	data := []models.CeasyData{}
 	if area == "" {
 		result = utils.GetDB().Limit(limit).Offset(offset).Order("id desc").Find(&data)
 	} else {
@@ -38,9 +38,9 @@ func GetMsg(area string, limit, offset int) (*[]models.MsgData, error) {
 func GetMsgCount(area string, offset int) (count int64, err error) {
 	var result *gorm.DB
 	if area == "" {
-		result = utils.GetDB().Table("msg_data").Count(&count)
+		result = utils.GetDB().Table("ceasy_data").Count(&count)
 	} else {
-		result = utils.GetDB().Table("msg_data").Where("area = ?", area).Count(&count)
+		result = utils.GetDB().Table("ceasy_data").Where("area = ?", area).Count(&count)
 	}
 	err = result.Error
 	return
@@ -48,7 +48,7 @@ func GetMsgCount(area string, offset int) (count int64, err error) {
 
 //GetAreaMsg returns all area's CBS message from database.
 func GetAreaMsg(str string) ([]string, error) {
-	data := make([]models.MsgData, 0)
+	data := make([]models.CeasyData, 0)
 	result := utils.GetDB().Distinct("area").Order("area").Select("area").Where("area LIKE ?", "%"+str+"%").Find(&data)
 	if result.Error != nil {
 		return nil, result.Error
