@@ -12,5 +12,5 @@ type Search struct {
 }
 
 type Location struct {
-	Data []string `json:data`
+	Data []string `json:"data"`
 }

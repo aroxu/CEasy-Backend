@@ -25,11 +25,11 @@ func GetLast() (int, error) {
 func GetMsg(area string, limit, offset int) (*[]models.CeasyData, error) {
 	log.Print(limit)
 	var result *gorm.DB
-	data := []models.CeasyData{}
+	var data []models.CeasyData
 	if area == "" {
 		result = utils.GetDB().Limit(limit).Offset(offset).Order("id desc").Find(&data)
 	} else {
-		result = utils.GetDB().Where("area = ?", area).Limit(limit).Offset(offset).Order("id desc").Find(&data)
+		result = utils.GetDB().Where("area LIKE ?", "%"+area+"%").Limit(limit).Offset(offset).Order("id desc").Find(&data)
 	}
 	return &data, result.Error
 }

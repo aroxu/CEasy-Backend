@@ -10,19 +10,19 @@ import (
 	json "github.com/json-iterator/go"
 )
 
-//GetDetailMsg get id (integet) and returns map with interfaced bbs searchinfo.
+//GetDetailMsg get id (integer) and returns map with interfaced bbs search info.
 func GetDetailMsg(id int) (*models.SelectBbsView, error) {
-	reqbody := &map[interface{}]interface{}{
+	requestBody := &map[interface{}]interface{}{
 		"bbs_searchInfo": map[interface{}]interface{}{
 			"bbs_no":   "63",
 			"bbs_ordr": id,
 		},
 	}
-	reqbytes, err := json.Marshal(reqbody)
+	requestBytes, err := json.Marshal(requestBody)
 	if err != nil {
 		return nil, err
 	}
-	req, err := http.NewRequest("POST", "https://www.safekorea.go.kr/idsiSFK/bbs/user/selectBbsView.do", bytes.NewBuffer(reqbytes))
+	req, err := http.NewRequest("POST", "https://www.safekorea.go.kr/idsiSFK/bbs/user/selectBbsView.do", bytes.NewBuffer(requestBytes))
 	if err != nil {
 		return nil, err
 	}
@@ -40,27 +40,27 @@ func GetDetailMsg(id int) (*models.SelectBbsView, error) {
 	if err = json.Unmarshal(respBody, &data); err != nil {
 		return nil, err
 	}
-	id, errStrconv := strconv.Atoi(data.Data.IDStr)
-	if errStrconv != nil {
-		return nil, errStrconv
+	id, errStringConvert := strconv.Atoi(data.Data.IDStr)
+	if errStringConvert != nil {
+		return nil, errStringConvert
 	}
 	data.Data.ID = id
 	return data, nil
 }
 
-//GetLastMsgID return integar type of Latest bbs id and error(nil | error)
+//GetLastMsgID return integer type of Latest bbs id and error(nil | error)
 func GetLastMsgID() (int, error) {
-	reqbody := &map[interface{}]interface{}{
+	requestBody := &map[interface{}]interface{}{
 		"bbs_searchInfo": map[interface{}]interface{}{
 			"bbs_no":   "63",
 			"pageUnit": "1",
 		},
 	}
-	reqbytes, err := json.Marshal(reqbody)
+	requestBytes, err := json.Marshal(requestBody)
 	if err != nil {
 		return 0, err
 	}
-	req, err := http.NewRequest("POST", "http://www.safekorea.go.kr/idsiSFK/bbs/user/selectBbsList.do", bytes.NewBuffer(reqbytes))
+	req, err := http.NewRequest("POST", "http://www.safekorea.go.kr/idsiSFK/bbs/user/selectBbsList.do", bytes.NewBuffer(requestBytes))
 	if err != nil {
 		return 0, err
 	}

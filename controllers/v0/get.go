@@ -20,7 +20,7 @@ func Get(c *gin.Context) {
 	data, err := db.GetMsg(query.Location, query.Limit, query.Offset)
 	count, err2 := db.GetMsgCount(query.Location, query.Offset)
 	if err != nil || err2 != nil {
-		res.SendError(c, res.ERR_SERVER, "ERROR")
+		res.SendError(c, res.ErrServer, "ERROR")
 	}
 	res.Response(c, resmodels.Search{
 		Count: count,

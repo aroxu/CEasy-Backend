@@ -1,10 +1,10 @@
 package server
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/B1ackAnge1/CEasy-Backend/db"
+	"github.com/B1ackAnge1/CEasy-Backend/models"
 	"github.com/B1ackAnge1/CEasy-Backend/utils"
 )
 
@@ -20,19 +20,24 @@ func StartCrawl() {
 		log.Print(err)
 		lastID = 0
 	}
-	fmt.Println("Start id: ", id, " Last ID: ", lastID)
+	log.Print("Start id: ", id, " Last ID: ", lastID)
 	for ; id > lastID; id-- {
-		fmt.Println("Start Parse ID: ", id)
+		log.Print("Start Parse ID: ", id)
 		data, err := utils.GetDetailMsg(id)
 		if err != nil {
 			log.Print(err)
 			return
 		}
-		go func() {
-			data.Data.Area = utils.ParseStringInBetween(data.Data.Content, "[", "]")
-			db.InsertMsg(&data.Data)
-			fmt.Printf("End Parse ID: %d Area: %s\n", id, data.Data.Area)
-		}()
+		go crawlInsertDB(id, data)
 	}
 	log.Print("End Crawl")
+}
+
+func crawlInsertDB(id int, data *models.SelectBbsView) {
+	data.Data.Area = utils.ParseStringInBetween(data.Data.Content, "[", "]")
+	errInsertMsgToDb := db.InsertMsg(&data.Data)
+	if errInsertMsgToDb != nil {
+		log.Fatalf("There was an error while insert message to Database Server. Check DB Setting and try again.")
+	}
+	log.Printf("End Parse ID: %d Area: %s\n", id, data.Data.Area)
 }

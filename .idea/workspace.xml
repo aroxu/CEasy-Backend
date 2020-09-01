@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="87a4818f-6a9d-432d-9d46-55d406ea4b45" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/controllers/v0/get.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/v0/get.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/v0/getLocation.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/v0/getLocation.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/ceasyData.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/ceasyData.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middlewares/verifyRequest.go" beforeDir="false" afterPath="$PROJECT_DIR$/middlewares/verifyRequest.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/res/general.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/res/general.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/safeKorea.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/safeKorea.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/crawl.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/crawl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/parse.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/parse.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/request.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/request.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/res/errorHandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/res/errorHandler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/res/response.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/res/response.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" path="/usr/local/Cellar/go/1.15/libexec" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1gu8qj9h9Yg4Tb3IK7x3CNBcuVp" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="false" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="87a4818f-6a9d-432d-9d46-55d406ea4b45" name="Default Changelist" comment="" />
+      <created>1598953310608</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1598953310608</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="640" y="180" key="#GOPATH" timestamp="1598953395672">
+      <screen x="0" y="23" width="1680" height="984" />
+    </state>
+    <state x="640" y="180" key="#GOPATH/0.23.1680.984@0.23.1680.984" timestamp="1598953395672" />
+    <state x="640" y="452" key="#GOROOT" timestamp="1598953322770">
+      <screen x="0" y="23" width="1680" height="984" />
+    </state>
+    <state x="640" y="452" key="#GOROOT/0.23.1680.984@0.23.1680.984" timestamp="1598953322770" />
+    <state x="640" y="355" key="#Go_Modules" timestamp="1598953333445">
+      <screen x="0" y="23" width="1680" height="984" />
+    </state>
+    <state x="640" y="355" key="#Go_Modules/0.23.1680.984@0.23.1680.984" timestamp="1598953333445" />
+    <state x="341" y="154" key="SettingsEditor" timestamp="1598953365565">
+      <screen x="0" y="23" width="1680" height="984" />
+    </state>
+    <state x="341" y="154" key="SettingsEditor/0.23.1680.984@0.23.1680.984" timestamp="1598953365565" />
+  </component>
+</project>

@@ -51,8 +51,10 @@ func startServer() {
 	version0 := r.Group("/api/cbs/v0")
 	v0.InitRoutes(version0)
 
-	r.Run(":" + config.Port)
-
+	errRunGin := r.Run(":" + config.Port)
+	if errRunGin != nil {
+		log.Fatalf("There was an error while running gin Server. Try to change config to DEBUG and check error.")
+	}
 }
 
 func initDB() {
@@ -64,9 +66,12 @@ func initDB() {
 		return
 	}
 	utils.SetDB(db)
-	log.Print("Successed To Connect Database")
+	log.Print("Successfully Connected To Database")
 
-	var models = []interface{}{&models.CeasyData{}}
-	db.AutoMigrate(models...)
+	var ceasyDataModels = []interface{}{&models.CeasyData{}}
+	errAutoMigrate := db.AutoMigrate(ceasyDataModels...)
+	if errAutoMigrate != nil {
+		log.Fatalf("There was an error while running Auto Migrate. Try to change config to DEBUG and check error.")
+	}
 	log.Print("Successfully performed AutoMigrate")
 }

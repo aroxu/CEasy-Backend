@@ -5,20 +5,20 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func VerifyBody(data interface{}) gin.HandlerFunc {
-	return func(c *gin.Context) {
-		if err := c.ShouldBindJSON(data); err != nil {
-			res.SendError(c, res.ERR_BAD_REQUEST, err.Error())
-			return
-		}
-		c.Set("body", data)
-	}
-}
+//func VerifyBody(data interface{}) gin.HandlerFunc {
+//	return func(c *gin.Context) {
+//		if err := c.ShouldBindJSON(data); err != nil {
+//			res.SendError(c, res.ErrBadRequest, err.Error())
+//			return
+//		}
+//		c.Set("body", data)
+//	}
+//}
 
 func VerifyQuery(data interface{}) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		if err := c.ShouldBindQuery(data); err != nil {
-			res.SendError(c, res.ERR_BAD_REQUEST, err.Error())
+			res.SendError(c, res.ErrBadRequest, err.Error())
 			return
 		}
 		c.Set("query", data)

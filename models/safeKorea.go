@@ -1,5 +1,7 @@
 package models
 
+import "time"
+
 type SelectBbsList struct {
 	Result RtnResult `json:"rtnResult"`
 	Data   []struct {
@@ -20,9 +22,11 @@ type RtnResult struct {
 }
 
 type CeasyData struct {
-	ID      int    `gorm:"primary_key;unique_index"`
-	Title   string `json:"sj" gorm:"unique_index"`
-	Area    string `json:"area" gorm:""`
-	Content string `json:"cn"`
-	IDStr   string `json:"bbs_ordr"`
+	ID             int        `gorm:"primary_key;unique_index"`
+	Title          string     `json:"sj" gorm:"unique_index"`
+	Area           string     `json:"area" gorm:""`
+	Content        string     `json:"cn"`
+	IDStr          string     `json:"bbs_ordr" gorm:"-"`
+	FirstRegist    *time.Time `json:"-"`
+	FirstRegistStr string     `json:"frst_regist_dt"`
 }

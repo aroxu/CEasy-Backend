@@ -9,10 +9,10 @@ import (
 type ErrType int
 
 const (
-	ERR_BAD_REQUEST ErrType = 1 + iota
-	ERR_SERVER
-	ERR_DUPLICATE
-	ERR_AUTH
+	ErrBadRequest ErrType = 1 + iota
+	ErrServer
+	ErrDuplicate
+	ErrAuth
 )
 
 func SendError(c *gin.Context, errType ErrType, text string) {
@@ -26,13 +26,13 @@ func SendError(c *gin.Context, errType ErrType, text string) {
 	}
 
 	switch errType {
-	case ERR_BAD_REQUEST:
+	case ErrBadRequest:
 		set("ERR_BAD_REQUEST", text, http.StatusBadRequest)
-	case ERR_SERVER:
+	case ErrServer:
 		set("ERR_SERVER", text, http.StatusInternalServerError)
-	case ERR_DUPLICATE:
+	case ErrDuplicate:
 		set("ERR_DUPLICATE", text, http.StatusConflict)
-	case ERR_AUTH:
+	case ErrAuth:
 		set("ERR_AUTH", text, http.StatusUnauthorized)
 	}
 

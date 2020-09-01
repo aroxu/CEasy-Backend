@@ -2,15 +2,15 @@ package utils
 
 import "strings"
 
-func ParseStringInBetween(str string, start string, end string) (result string) {
-	s := strings.Index(str, start)
-	if s == -1 {
+func ParseStringInBetween(origin string, start string, end string) (result string) {
+	modifiedStart := strings.Index(origin, start)
+	if modifiedStart == -1 {
 		return
 	}
-	s += len(start)
-	e := strings.Index(str, end)
-	if e == -1 {
+	modifiedStart += len(start)
+	modifiedEnd := strings.Index(origin, end)
+	if modifiedEnd == -1 {
 		return
 	}
-	return str[s:e]
+	return origin[modifiedStart:modifiedEnd]
 }
