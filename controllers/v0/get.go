@@ -1,6 +1,8 @@
 package v0
 
 import (
+	"time"
+
 	"github.com/B1ackAnge1/CEasy-Backend/db"
 
 	"github.com/B1ackAnge1/CEasy-Backend/models/req"
@@ -17,8 +19,27 @@ func Get(c *gin.Context) {
 	if query.Limit == 0 {
 		query.Limit = 20
 	}
-	data, err := db.GetMsg(query.Location, query.Limit, query.Offset)
-	count, err2 := db.GetMsgCount(query.Location, query.Offset)
+	var start, end *time.Time
+	start, end = nil, nil
+	if query.Start != "" {
+		parsed, errTime := time.Parse("2006-01-02 15:04:05", query.Start)
+		if errTime != nil {
+			res.SendError(c, res.ErrBadRequest, "시간을 yyyy-mm-dd hh:mm:ss 형식으로 적어주세요.")
+			return
+		}
+		start = &parsed
+	}
+	if query.End != "" {
+		parsed, errTime := time.Parse("2006-01-02 15:04:05", query.End)
+		if errTime != nil {
+			res.SendError(c, res.ErrBadRequest, "시간을 yyyy-mm-dd hh:mm:ss 형식으로 적어주세요.")
+			return
+		}
+		end = &parsed
+	}
+
+	data, err := db.GetMsg(query.Area, query.AreaDetail, start, end, query.Limit, query.Offset)
+	count, err2 := db.GetMsgCount(query.Area, query.AreaDetail, start, end, query.Offset)
 	if err != nil || err2 != nil {
 		res.SendError(c, res.ErrServer, "ERROR")
 	}

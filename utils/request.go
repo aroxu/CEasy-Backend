@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"io/ioutil"
 	"net/http"
-	"strconv"
 
 	"github.com/B1ackAnge1/CEasy-Backend/models"
 	json "github.com/json-iterator/go"
@@ -40,11 +39,6 @@ func GetDetailMsg(id int) (*models.SelectBbsView, error) {
 	if err = json.Unmarshal(respBody, &data); err != nil {
 		return nil, err
 	}
-	id, errStringConvert := strconv.Atoi(data.Data.IDStr)
-	if errStringConvert != nil {
-		return nil, errStringConvert
-	}
-	data.Data.ID = id
 	return data, nil
 }
 

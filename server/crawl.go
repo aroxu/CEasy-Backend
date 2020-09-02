@@ -2,6 +2,10 @@ package server
 
 import (
 	"log"
+	"regexp"
+	"strconv"
+	"strings"
+	"time"
 
 	"github.com/B1ackAnge1/CEasy-Backend/db"
 	"github.com/B1ackAnge1/CEasy-Backend/models"
@@ -10,6 +14,7 @@ import (
 
 //StartCrawl starts crawling to
 func StartCrawl() {
+	log.Print("Starting Crawling Code")
 	id, err := utils.GetLastMsgID()
 	if err != nil {
 		log.Print(err)
@@ -34,10 +39,41 @@ func StartCrawl() {
 }
 
 func crawlInsertDB(id int, data *models.SelectBbsView) {
-	data.Data.Area = utils.ParseStringInBetween(data.Data.Content, "[", "]")
-	errInsertMsgToDb := db.InsertMsg(&data.Data)
+	mRmPrefix := regexp.MustCompile("\\[(.*?)\\]")
+
+	str := strings.ReplaceAll(strings.ReplaceAll(data.Data.Content, "\r", ""), "\n", "")
+	strPrefix := mRmPrefix.FindString(str)
+	area := strings.Replace(strings.Replace(strPrefix, "[", "", -1), "]", "", -1)
+	splitStr := strings.Split(str, "-송출지역-")
+	areaDetail := "알수없음"
+	if len(splitStr) > 1 {
+		areaDetail = splitStr[1]
+	}
+	str = strings.Replace(splitStr[0], strPrefix, "", -1)
+
+	timeParsed, err := time.Parse("2006-01-02 15:04:05", data.Data.Date)
+	if err != nil {
+		log.Print(err)
+		return
+	}
+
+	idParsed, err := strconv.Atoi(data.Data.ID)
+	if err != nil {
+		log.Print(err)
+		return
+	}
+
+	dbData := models.CeasyData{
+		ID:         idParsed,
+		Area:       strings.TrimSpace(area),
+		AreaDetail: strings.TrimSpace(areaDetail),
+		Content:    strings.TrimSpace(str),
+		Date:       &timeParsed,
+	}
+
+	errInsertMsgToDb := db.InsertMsg(&dbData)
 	if errInsertMsgToDb != nil {
 		log.Fatalf("There was an error while insert message to Database Server. Check DB Setting and try again.")
 	}
-	log.Printf("End Parse ID: %d Area: %s\n", id, data.Data.Area)
+	log.Printf("End Parse ID: %d Area: %s\n", id, areaDetail)
 }

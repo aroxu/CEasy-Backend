@@ -12,8 +12,8 @@ type SelectBbsList struct {
 }
 
 type SelectBbsView struct {
-	Result RtnResult `json:"rtnResult"`
-	Data   CeasyData `json:"bbsMap"`
+	Result RtnResult         `json:"rtnResult"`
+	Data   CeasyDataForParse `json:"bbsMap"`
 }
 
 type RtnResult struct {
@@ -22,11 +22,15 @@ type RtnResult struct {
 }
 
 type CeasyData struct {
-	ID             int        `gorm:"primary_key;unique_index"`
-	Title          string     `json:"sj" gorm:"unique_index"`
-	Area           string     `json:"area" gorm:""`
-	Content        string     `json:"cn"`
-	IDStr          string     `json:"bbs_ordr" gorm:"-"`
-	FirstRegist    *time.Time `json:"-"`
-	FirstRegistStr string     `json:"frst_regist_dt"`
+	ID         int    `gorm:"primary_key;unique_index"`
+	Area       string `json:"area" gorm:""`
+	AreaDetail string `json:"area_detail" gorm:""`
+	Content    string `json:"content"`
+	Date       *time.Time
+}
+
+type CeasyDataForParse struct {
+	ID      string `json:"bbs_ordr"`
+	Content string `json:"cn"`
+	Date    string `json:"frst_regist_dt"`
 }

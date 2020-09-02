@@ -1,7 +1,7 @@
 package db
 
 import (
-	"log"
+	"time"
 
 	"github.com/B1ackAnge1/CEasy-Backend/models"
 	"github.com/B1ackAnge1/CEasy-Backend/utils"
@@ -22,28 +22,45 @@ func GetLast() (int, error) {
 }
 
 //GetMsg returns CBS message by area from database.
-func GetMsg(area string, limit, offset int) (*[]models.CeasyData, error) {
-	log.Print(limit)
+func GetMsg(area, areaDetail string, start, end *time.Time, limit, offset int) (*[]models.CeasyData, error) {
 	var result *gorm.DB
 	var data []models.CeasyData
-	if area == "" {
-		result = utils.GetDB().Limit(limit).Offset(offset).Order("id desc").Find(&data)
-	} else {
-		result = utils.GetDB().Where("area LIKE ?", "%"+area+"%").Limit(limit).Offset(offset).Order("id desc").Find(&data)
+	result = utils.GetDB().Limit(limit).Offset(offset).Order("id desc").Find(&data)
+	if area != "" {
+		result = result.Where("area LIKE ?", "%"+area+"%")
 	}
+	if areaDetail != "" {
+		result = result.Where("area_detail LIKE ?", "%"+areaDetail+"%")
+	}
+	if start != nil {
+		result = result.Where("date >= ? ", start)
+	}
+	if end != nil {
+		result = result.Where("date <= ? ", end)
+	}
+	result.Find(&data)
 	return &data, result.Error
 }
 
 //GetMsgCount returns Total CBS message counts.
-func GetMsgCount(area string, offset int) (count int64, err error) {
+func GetMsgCount(area, areaDetail string, start, end *time.Time, offset int) (int64, error) {
 	var result *gorm.DB
-	if area == "" {
-		result = utils.GetDB().Table("ceasy_data").Count(&count)
-	} else {
-		result = utils.GetDB().Table("ceasy_data").Where("area = ?", area).Count(&count)
+	var count int64
+	result = utils.GetDB().Table("ceasy_data")
+	if area != "" {
+		result = result.Where("area LIKE ?", "%"+area+"%")
 	}
-	err = result.Error
-	return
+	if areaDetail != "" {
+		result = result.Where("area_detail LIKE ?", "%"+areaDetail+"%")
+	}
+	if start != nil {
+		result = result.Where("date >= ? ", start)
+	}
+	if end != nil {
+		result = result.Where("date <= ? ", end)
+	}
+	result.Count(&count)
+	return count, result.Error
 }
 
 //GetAreaMsg returns all area's CBS message from database.

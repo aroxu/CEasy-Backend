@@ -5,7 +5,10 @@ type Location struct {
 }
 
 type Search struct {
-	Location string `form:"location"`
+	Area string `form:"area"`
+	AreaDetail string `form:"area_detail"`
 	Offset   int    `form:"offset"`
 	Limit    int    `form:"limit"`
+	Start string `form:"start"`
+	End string `form:"end"`
 }

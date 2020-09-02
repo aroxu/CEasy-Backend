@@ -16,13 +16,13 @@ import (
 
 //Init is actual entry point for this project.
 func Init() {
+	etcInit()
 	applyConfig()
 	initDB()
-	go testCode()
 	startServer()
 }
 
-func testCode() {
+func etcInit() {
 }
 
 func applyConfig() {
