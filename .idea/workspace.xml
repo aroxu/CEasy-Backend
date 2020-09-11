@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="87a4818f-6a9d-432d-9d46-55d406ea4b45" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/controllers/v0/get.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/v0/get.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/v0/getLocation.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/v0/getLocation.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/ceasyData.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/ceasyData.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middlewares/verifyRequest.go" beforeDir="false" afterPath="$PROJECT_DIR$/middlewares/verifyRequest.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/res/general.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/res/general.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/safeKorea.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/safeKorea.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/crawl.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/crawl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/parse.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/parse.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/request.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/request.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/res/errorHandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/res/errorHandler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/res/response.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/res/response.go" afterDir="false" />
-    </list>
+    <list default="true" id="87a4818f-6a9d-432d-9d46-55d406ea4b45" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -11,6 +11,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//Get returns query from database.
 func Get(c *gin.Context) {
 	query := c.MustGet("query").(*req.Search)
 	if query.Limit == -1 {

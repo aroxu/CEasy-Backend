@@ -15,6 +15,7 @@ const (
 	ErrAuth
 )
 
+//SendError returns request error or other errors to request
 func SendError(c *gin.Context, errType ErrType, text string) {
 	var Message, ErrCode string
 	var Status int

@@ -2,6 +2,7 @@ package models
 
 import "time"
 
+//SelectBbsList returns bbs selection
 type SelectBbsList struct {
 	Result RtnResult `json:"rtnResult"`
 	Data   []struct {
@@ -11,16 +12,19 @@ type SelectBbsList struct {
 	} `json:"bbsList"`
 }
 
+//SelectBbsView returns organized data
 type SelectBbsView struct {
 	Result RtnResult         `json:"rtnResult"`
 	Data   CeasyDataForParse `json:"bbsMap"`
 }
 
+//RtnResult returns return Result
 type RtnResult struct {
 	Code string `json:"resultCode"`
 	Msg  string `json:"resultMsg"`
 }
 
+//CeasyData returns actual data
 type CeasyData struct {
 	ID         int    `gorm:"primary_key;unique_index"`
 	Area       string `json:"area" gorm:""`
@@ -29,6 +33,7 @@ type CeasyData struct {
 	Date       *time.Time
 }
 
+//CeasyDataForParse returns date data
 type CeasyDataForParse struct {
 	ID      string `json:"bbs_ordr"`
 	Content string `json:"cn"`
