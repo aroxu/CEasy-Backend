@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/B1ackAnge1/CEasy-Backend/db"
-	"github.com/B1ackAnge1/CEasy-Backend/models"
-	"github.com/B1ackAnge1/CEasy-Backend/utils"
+	"github.com/aroxu/CEasy-Backend/db"
+	"github.com/aroxu/CEasy-Backend/models"
+	"github.com/aroxu/CEasy-Backend/utils"
 )
 
 //StartCrawl starts crawling to

@@ -3,8 +3,8 @@ package db
 import (
 	"time"
 
-	"github.com/B1ackAnge1/CEasy-Backend/models"
-	"github.com/B1ackAnge1/CEasy-Backend/utils"
+	"github.com/aroxu/CEasy-Backend/models"
+	"github.com/aroxu/CEasy-Backend/utils"
 	"gorm.io/gorm"
 )
 

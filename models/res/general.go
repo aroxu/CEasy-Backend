@@ -1,7 +1,7 @@
 package res
 
 import (
-	"github.com/B1ackAnge1/CEasy-Backend/models"
+	"github.com/aroxu/CEasy-Backend/models"
 )
 
 //Empty returns empty structure

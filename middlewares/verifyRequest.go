@@ -1,7 +1,7 @@
 package middlewares
 
 import (
-	"github.com/B1ackAnge1/CEasy-Backend/utils/res"
+	"github.com/aroxu/CEasy-Backend/utils/res"
 	"github.com/gin-gonic/gin"
 )
 

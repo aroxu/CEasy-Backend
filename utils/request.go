@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/B1ackAnge1/CEasy-Backend/models"
+	"github.com/aroxu/CEasy-Backend/models"
 	json "github.com/json-iterator/go"
 )
 

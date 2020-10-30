@@ -1,10 +1,10 @@
 package v0
 
 import (
-	"github.com/B1ackAnge1/CEasy-Backend/db"
-	"github.com/B1ackAnge1/CEasy-Backend/models/req"
-	resmodels "github.com/B1ackAnge1/CEasy-Backend/models/res"
-	"github.com/B1ackAnge1/CEasy-Backend/utils/res"
+	"github.com/aroxu/CEasy-Backend/db"
+	"github.com/aroxu/CEasy-Backend/models/req"
+	resmodels "github.com/aroxu/CEasy-Backend/models/res"
+	"github.com/aroxu/CEasy-Backend/utils/res"
 	"github.com/gin-gonic/gin"
 )
 

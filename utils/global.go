@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"github.com/B1ackAnge1/CEasy-Backend/models"
+	"github.com/aroxu/CEasy-Backend/models"
 	"gorm.io/gorm"
 )
 

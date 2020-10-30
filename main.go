@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/B1ackAnge1/CEasy-Backend/server"
+	"github.com/aroxu/CEasy-Backend/server"
 )
 
 func main() {

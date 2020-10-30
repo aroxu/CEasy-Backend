@@ -1,4 +1,4 @@
-module github.com/B1ackAnge1/CEasy-Backend
+module github.com/aroxu/CEasy-Backend
 
 go 1.14
 

@@ -1,9 +1,9 @@
 package v0
 
 import (
-	c "github.com/B1ackAnge1/CEasy-Backend/controllers/v0"
-	m "github.com/B1ackAnge1/CEasy-Backend/middlewares"
-	"github.com/B1ackAnge1/CEasy-Backend/models/req"
+	c "github.com/aroxu/CEasy-Backend/controllers/v0"
+	m "github.com/aroxu/CEasy-Backend/middlewares"
+	"github.com/aroxu/CEasy-Backend/models/req"
 	"github.com/gin-gonic/gin"
 )
 
