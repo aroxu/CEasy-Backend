@@ -34,7 +34,6 @@ func Get(c *gin.Context) {
 		parsed, errTime := time.Parse("2006-01-02 15:04:05", query.End)
 		if errTime != nil {
 			res.SendError(c, res.ErrBadRequest, "시간을 yyyy-mm-dd hh:mm:ss 형식으로 적어주세요.")
-			return
 		}
 		end = &parsed
 	}
@@ -43,6 +42,7 @@ func Get(c *gin.Context) {
 	count, err2 := db.GetMsgCount(query.Area, query.AreaDetail, start, end, query.Offset)
 	if err != nil || err2 != nil {
 		res.SendError(c, res.ErrServer, "ERROR")
+		return
 	}
 	res.Response(c, resmodels.Search{
 		Count: count,

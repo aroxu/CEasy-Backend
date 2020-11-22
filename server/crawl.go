@@ -45,7 +45,7 @@ func crawlInsertDB(id int, data *models.SelectBbsView) {
 	strPrefix := mRmPrefix.FindString(str)
 	area := strings.Replace(strings.Replace(strPrefix, "[", "", -1), "]", "", -1)
 	splitStr := strings.Split(str, "-송출지역-")
-	areaDetail := "알수없음"
+	areaDetail := "알 수 없음"
 	if len(splitStr) > 1 {
 		areaDetail = splitStr[1]
 	}
