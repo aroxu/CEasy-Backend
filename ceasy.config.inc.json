@@ -2,6 +2,7 @@
   "PORT": "9096",
   "DEBUG": true,
   "DefaultLimit":100,
+  "MaxLimit":1000,
   "DBHost": "127.0.0.1",
   "DBPort": "3306",
   "DBUser": "user",
