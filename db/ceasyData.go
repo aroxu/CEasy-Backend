@@ -22,7 +22,7 @@ func GetLast() (int, error) {
 }
 
 //GetMsg returns CBS message by area from database.
-func GetMsg(area, areaDetail string, start, end *time.Time, limit, offset int) (*[]models.CeasyData, error) {
+func GetMsg(area, areaDetail, searchContent string, start, end *time.Time, limit, offset int) (*[]models.CeasyData, error) {
 	var result *gorm.DB
 	var data []models.CeasyData
 	result = utils.GetDB().Limit(limit).Offset(offset).Order("id desc").Find(&data)
@@ -31,6 +31,9 @@ func GetMsg(area, areaDetail string, start, end *time.Time, limit, offset int) (
 	}
 	if areaDetail != "" {
 		result = result.Where("area_detail LIKE ?", "%"+areaDetail+"%")
+	}
+	if searchContent != "" {
+		result = result.Where("content LIKE ?", "%"+searchContent+"%")
 	}
 	if start != nil {
 		result = result.Where("date >= ? ", start)
@@ -43,7 +46,7 @@ func GetMsg(area, areaDetail string, start, end *time.Time, limit, offset int) (
 }
 
 //GetMsgCount returns Total CBS message counts.
-func GetMsgCount(area, areaDetail string, start, end *time.Time, offset int) (int64, error) {
+func GetMsgCount(area, areaDetail, searchContent string, start, end *time.Time, offset int) (int64, error) {
 	var result *gorm.DB
 	var count int64
 	result = utils.GetDB().Table("ceasy_data")
@@ -52,6 +55,9 @@ func GetMsgCount(area, areaDetail string, start, end *time.Time, offset int) (in
 	}
 	if areaDetail != "" {
 		result = result.Where("area_detail LIKE ?", "%"+areaDetail+"%")
+	}
+	if searchContent != "" {
+		result = result.Where("content LIKE ?", "%"+searchContent+"%")
 	}
 	if start != nil {
 		result = result.Where("date >= ? ", start)
