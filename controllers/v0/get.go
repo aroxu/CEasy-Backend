@@ -25,6 +25,9 @@ func Get(c *gin.Context) {
 	if c.Request.URL.Query().Get("area_detail") == "" {
 		query.AreaDetail = ""
 	}
+	if c.Request.URL.Query().Get("includes") == "" {
+		query.Includes = ""
+	}
 	if c.Request.URL.Query().Get("offset") == "" {
 		query.Offset = 0
 	}
@@ -64,8 +67,8 @@ func Get(c *gin.Context) {
 		requestCount = utils.GetConfig().DefaultLimit
 	}
 
-	data, err := db.GetMsg(query.Area, query.AreaDetail, query.SearchContent, start, end, requestCount, query.Offset)
-	count, err2 := db.GetMsgCount(query.Area, query.AreaDetail, query.SearchContent, start, end, query.Offset)
+	data, err := db.GetMsg(query.Area, query.AreaDetail, query.Includes, start, end, requestCount, query.Offset)
+	count, err2 := db.GetMsgCount(query.Area, query.AreaDetail, query.Includes, start, end, query.Offset)
 	if err != nil || err2 != nil {
 		res.SendError(c, res.ErrServer, "There was a problem with Database")
 		return
