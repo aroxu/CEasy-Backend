@@ -43,6 +43,11 @@ func Get(c *gin.Context) {
 		return
 	}
 
+	if query.Limit < 0 {
+		res.SendError(c, res.ErrLimit, "Only Natural numbers are allowed.")
+		return
+	}
+
 	var start, end *time.Time
 	start, end = nil, nil
 	if query.Start != "" {
