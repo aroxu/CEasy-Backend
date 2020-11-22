@@ -1,1 +1,1 @@
-env GOOS=linux GOARCH=arm64 go build
+env GOOS=linux GOARCH=arm go build

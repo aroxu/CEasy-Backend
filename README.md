@@ -70,7 +70,17 @@ response:
 3. `ceasy.config.inc.json` 파일을 `ceasy.config.json`으로 파일 이름을 변경한 뒤, 안의 내용을 적절히 기입한다.
 4. `go build && ./CEasy-Backend` 실행. 또는 `go run main.go`를 실행
 
-### request / response 정리
+## **request / response 정리**
+
+`code` : 성공 여부  
+`count` : 서버가 현제 가지고 있는 데이터의 양을 표시  
+`data` : request에 맞게 산출된 데이터, List 형태로 표시됨  
+┣`Date` : 재난 문자 발송일 및 시간 기록  
+┣`ID` : 재난 문자 발행 ID  
+┣`area` : 발송 주최  
+┣`area_detail` : 조금 더 자세한 발송 주최  
+┗`content` : 재난 문자의 내용  
+`message` : 오류 메세지
 
 #### 아무것도 붙이지 않았을때
 
@@ -381,3 +391,56 @@ response:
 
 위의 limit, area, area_detail, start, end 등의 속성은 중첩하여 사용할 수 있다.
 단, start -> end -> area -> area_detail -> limit 의 순서대로 옵션을 주어야 제대로 결과가 나온다.
+
+#### 오프셋 지정
+
+ex) GET : localhost:9096/api/cbs/v0/?limit=5&offset=20
+
+> 조건에 맞게 산출된 데이터에서 20개 뒤의 데이터부터 지정
+
+response:
+
+```json
+{
+  "code": "SUCCESS",
+  "count": 46105,
+  "data": [
+    {
+      "Date": "2020-09-11T18:14:31Z",
+      "ID": 56296,
+      "area": "남동구청",
+      "area_detail": "인천광역시 남동구",
+      "content": "코로나19 추가 확진자 1명 발생(간석1동, 확진자 접촉자) 세부내용은 홈페이지 및 블로그에 게시하였습니다. reurl.kr/38FA34A0WX"
+    },
+    {
+      "Date": "2020-09-11T18:14:19Z",
+      "ID": 56295,
+      "area": "동대문구청",
+      "area_detail": "서울특별시 동대문구",
+      "content": "오늘 우리 동대문구 확진자 수가 다시 3명으로 증가했습니다. 구민 여러분께서는 기본 예방수칙을 준수해 주시기를 각별히 부탁드립니다."
+    },
+    {
+      "Date": "2020-09-11T18:13:57Z",
+      "ID": 56294,
+      "area": "동대문구청",
+      "area_detail": "서울특별시 동대문구",
+      "content": "134번(용신동,남),135번(전농1동,여),136번(장안2동,남) 확진자 발생, 자세한 사항은 ddm4you.blog.me 참조하시기 바랍니다."
+    },
+    {
+      "Date": "2020-09-11T18:08:50Z",
+      "ID": 56293,
+      "area": "칠곡군청",
+      "area_detail": "경상북도 칠곡군",
+      "content": "경주 67번 확진자 동명면 장뇌삼 사업설명회 방문 관련 참석자 명단 전원 확보. 현재 역학 조사 중임을 알려드립니다."
+    },
+    {
+      "Date": "2020-09-11T18:08:51Z",
+      "ID": 56292,
+      "area": "포천시청",
+      "area_detail": "경기도 포천시",
+      "content": "포천시 코로나19 62번~64번 확진자 발생(영북면 거주 3명) 역학조사 중 동선은 홈페이지 및 블로그(c11.kr/hupu)참조하시기 바랍니다."
+    }
+  ],
+  "message": ""
+}
+```
