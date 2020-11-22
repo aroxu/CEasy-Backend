@@ -13,7 +13,7 @@ func GetLocation(c *gin.Context) {
 	query := c.MustGet("query").(*req.Location)
 	list, err := db.GetAreaMsg(query.Value)
 	if err != nil {
-		res.SendError(c, res.ErrServer, "ERROR")
+		res.SendError(c, res.ErrServer, "There was a problem with Database")
 		return
 	}
 	res.Response(c, resmodels.Location{

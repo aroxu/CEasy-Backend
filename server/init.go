@@ -2,6 +2,7 @@ package server
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 
@@ -34,13 +35,13 @@ func applyConfig() {
 	if err := json.Unmarshal(jsonFile, &config); err != nil {
 		log.Fatal(err.Error())
 	}
-	log.Print("Successfully Opened ceasy.config.json")
+	fmt.Println("Successfully Opened ceasy.config.json")
 	utils.SetConfig(&config)
 }
 
 func startServer() {
 	config := utils.GetConfig()
-	if config.Debug {
+	if !config.Debug {
 		gin.SetMode(gin.DebugMode)
 	} else {
 		gin.SetMode(gin.ReleaseMode)
@@ -53,7 +54,7 @@ func startServer() {
 
 	errRunGin := r.Run(":" + config.Port)
 	if errRunGin != nil {
-		log.Fatalf("There was an error while running gin Server. Try to change config to DEBUG and check error.")
+		panic("There was an error while running gin Server. Try to change config to DEBUG and check error.")
 	}
 }
 
@@ -62,8 +63,7 @@ func initDB() {
 	dsn := config.DBUser + ":" + config.DBPass + "@tcp(" + config.DBHost + ":" + config.DBPort + ")/" + config.DBDatabase + "?charset=utf8mb4&parseTime=True"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
-		log.Fatal(err)
-		return
+		panic(err)
 	}
 	utils.SetDB(db)
 	log.Print("Successfully Connected To Database")
@@ -73,5 +73,5 @@ func initDB() {
 	if errAutoMigrate != nil {
 		log.Fatalf("There was an error while running Auto Migrate. Try to change config to DEBUG and check error.")
 	}
-	log.Print("Successfully performed AutoMigrate")
+	fmt.Println("Successfully performed AutoMigrate")
 }

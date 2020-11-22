@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/aroxu/CEasy-Backend/db"
+	"github.com/aroxu/CEasy-Backend/utils"
 
 	"github.com/aroxu/CEasy-Backend/models/req"
 	resmodels "github.com/aroxu/CEasy-Backend/models/res"
@@ -14,11 +15,23 @@ import (
 //Get returns query from database.
 func Get(c *gin.Context) {
 	query := c.MustGet("query").(*req.Search)
-	if query.Limit == -1 {
-		query.Limit = 10000000
+	if c.Request.URL.Query().Get("limit") == "" {
+		query.Limit = utils.GetConfig().DefaultLimit
 	}
-	if query.Limit == 0 {
-		query.Limit = 20
+	if c.Request.URL.Query().Get("area") == "" {
+		query.Area = ""
+	}
+	if c.Request.URL.Query().Get("area_detail") == "" {
+		query.AreaDetail = ""
+	}
+	if c.Request.URL.Query().Get("offset") == "" {
+		query.Offset = 0
+	}
+	if c.Request.URL.Query().Get("start") == "" {
+		query.Start = ""
+	}
+	if c.Request.URL.Query().Get("end") == "" {
+		query.End = ""
 	}
 	var start, end *time.Time
 	start, end = nil, nil
@@ -39,10 +52,15 @@ func Get(c *gin.Context) {
 		end = &parsed
 	}
 
-	data, err := db.GetMsg(query.Area, query.AreaDetail, start, end, query.Limit, query.Offset)
+	var requestCount = query.Limit
+	if query.Limit == 0 {
+		requestCount = utils.GetConfig().DefaultLimit
+	}
+
+	data, err := db.GetMsg(query.Area, query.AreaDetail, start, end, requestCount, query.Offset)
 	count, err2 := db.GetMsgCount(query.Area, query.AreaDetail, start, end, query.Offset)
 	if err != nil || err2 != nil {
-		res.SendError(c, res.ErrServer, "ERROR")
+		res.SendError(c, res.ErrServer, "There was a problem with Database")
 		return
 	}
 	res.Response(c, resmodels.Search{

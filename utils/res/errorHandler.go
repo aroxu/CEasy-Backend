@@ -13,6 +13,7 @@ const (
 	ErrServer
 	ErrDuplicate
 	ErrAuth
+	ErrLimit
 )
 
 //SendError returns request error or other errors to request
@@ -35,6 +36,8 @@ func SendError(c *gin.Context, errType ErrType, text string) {
 		set("ERR_DUPLICATE", text, http.StatusConflict)
 	case ErrAuth:
 		set("ERR_AUTH", text, http.StatusUnauthorized)
+	case ErrLimit:
+		set("ERR_LIMIT", text, http.StatusBadRequest)
 	}
 
 	c.JSON(Status, gin.H{
