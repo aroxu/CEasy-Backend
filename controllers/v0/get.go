@@ -37,6 +37,9 @@ func Get(c *gin.Context) {
 	if c.Request.URL.Query().Get("end") == "" {
 		query.End = ""
 	}
+	if c.Request.URL.Query().Get("includes") == "" {
+		query.Includes = ""
+	}
 
 	if query.Limit > utils.GetConfig().MaxLimit {
 		res.SendError(c, res.ErrLimit, fmt.Sprintf("Max limit is %d. Please use 'offset' option to get next data.", utils.GetConfig().MaxLimit))
