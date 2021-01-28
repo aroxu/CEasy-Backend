@@ -283,7 +283,7 @@ response:
 
 #### 한도 조절
 
-ex) GET : localhost:9096/api/cbs/v0/limit=5
+ex) GET : localhost:9096/api/cbs/v0/?limit=5
 
 > 산출된 데이터에서 가장 최근 5개의 항목만 산출
 
